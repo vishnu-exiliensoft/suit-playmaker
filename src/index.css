@@ -1,0 +1,1781 @@
+/**
+ * GLOBAL STYLES AND THEME
+ * ========================
+ * 
+ * This file contains all global CSS styles for the suit customization application.
+ * It includes styles for:
+ * - Global body and HTML reset
+ * - Loading screen animations
+ * - Sidebar navigation and layout
+ * - 3D model viewer container
+ * - Customization panels and options
+ * - Responsive design breakpoints
+ * - Animation keyframes and transitions
+ * 
+ * Features:
+ * - Modern, clean design aesthetic
+ * - Responsive design for all screen sizes
+ * - Smooth animations and transitions
+ * - Consistent color scheme and typography
+ * - Mobile-first approach
+ * 
+ * @author Your Name
+ * @version 1.0.0
+ */
+
+/* Global Styles */
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Modern font for UI */
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #151516da 0%, #000000b7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.loading-content {
+  text-align: center;
+  color: white;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.loading-logo {
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+.loading-logo svg {
+  color: white;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.loading-content h2 {
+  font-size: 2rem;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loading-content p {
+  font-size: 1.1rem;
+  margin: 0 0 30px 0;
+  opacity: 0.9;
+}
+
+.loading-progress {
+  margin-bottom: 30px;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.loading-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4ade80, #22c55e);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+.loading-percentage {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner-ring {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Sidebar Loading Indicator */
+.sidebar-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+}
+
+.sidebar-loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+.sidebar-loading p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Button tabs styling */
+.button-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-tab {
+  flex: 1;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.button-tab:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.button-tab.active {
+  color: white;
+  border-bottom-color: white;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Color grid for button hole thread colors */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+  border-color: #333;
+}
+
+.color-option.is-selected {
+  border-color: #007bff;
+  border-width: 3px;
+  transform: scale(1.1);
+}
+
+.color-checkmark {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Color preview in button options */
+.color-preview {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+}
+
+/* Button style preview */
+.button-style-preview {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.button-style-preview:hover {
+  border-color: #007bff;
+  transform: scale(1.05);
+}
+
+.fabric-option-item.is-selected .button-style-preview {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+.style-number {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Button style options container - flex layout */
+.button-style-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* Button style option item */
+.button-style-option-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 43%;
+  flex: 0 0 42%;
+  background: white;
+}
+
+.button-style-option-item:hover {
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.button-style-option-item.is-selected {
+  border-color: #007bff;
+  background: #f8f9ff;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+}
+
+.button-style-option-item .button-style-preview {
+  margin-bottom: 6px;
+}
+
+.button-style-option-item .style-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+}
+
+/* Pocket styles display in selected display */
+.pocket-styles-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+.pocket-style-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pocket-style-item .button-style-preview {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ddd;
+  margin-bottom: 4px;
+}
+
+.pocket-style-item .style-number {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.pocket-style-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #666;
+  text-align: center;
+}
+
+/* Pocket image preview */
+.pocket-image-preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.pocket-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  transition: all 0.3s ease;
+}
+
+.button-style-option-item:hover .pocket-image-preview {
+  border-color: #007bff;
+  transform: scale(1.05);
+}
+
+.button-style-option-item.is-selected .pocket-image-preview {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Small pocket image preview for selected display */
+.pocket-image-preview-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.pocket-thumbnail-small {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+/* Fitting image preview with white background */
+.fitting-image-preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.fitting-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.fabric-option-item:hover .fitting-image-preview {
+  border-color: #007bff;
+  transform: scale(1.05);
+}
+
+.fabric-option-item.is-selected .fitting-image-preview {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Fitting thumbnail in sidebar */
+.fitting-thumbnail-sidebar {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+  background: white;
+  padding: 4px;
+}
+
+/* Fabric effect image preview with white background */
+.fabric-effect-image-preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.fabric-effect-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.fabric-option-item:hover .fabric-effect-image-preview {
+  border-color: #007bff;
+  transform: scale(1.05);
+}
+
+.fabric-option-item.is-selected .fabric-effect-image-preview {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Fabric effect thumbnail in sidebar */
+.fabric-effect-thumbnail-sidebar {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+  background: white;
+  padding: 4px;
+}
+
+
+/* Selected button style display */
+.selected-fabric-style {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* Button style display in selected display */
+.button-style-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.button-style-display .button-style-preview {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ddd;
+}
+.button-style-preview img {
+  width: 100%;
+}
+.button-style-display .style-number {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile Sidebar Toggle Button */
+.mobile-sidebar-toggle {
+  display: none; /* Hidden by default on desktop */
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.mobile-customize-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(34, 34, 34, 0.9);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.mobile-customize-btn:hover {
+  background: rgba(51, 51, 51, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.mobile-customize-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile Close Button */
+.mobile-close-btn {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.mobile-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* UI Controls Container (Sidebar) */
+.ui-controls-container {
+  width: 230px;
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Default gap between elements */
+  z-index: 10;
+  background: #181716;
+  padding: 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  height: calc(100% - 105px);
+}
+
+  .selected-displays-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+}
+/* Chrome, Edge, Safari ke liye */
+.selected-displays-container::-webkit-scrollbar {
+  width: 2px;   /* scrollbar ko patla banane ke liye */
+}
+
+.selected-displays-container::-webkit-scrollbar-track {
+  background: #fff;  /* track ko transparent ya custom color */
+}
+
+.selected-displays-container::-webkit-scrollbar-thumb {
+  background-color: #c69239;    /* thumb ka color */
+  border-radius: 10px;       /* smooth rounded look */
+}
+
+.selected-displays-container::-webkit-scrollbar-thumb:hover {
+  background-color: white;    /* hover par thoda dark */
+
+}
+/* Base Button Style for all buttons in the sidebar */
+.ui-button {
+  padding: 8px 12px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease-in-out;
+}
+
+.ui-button:hover {
+  background: #444;
+}
+
+.ui-button.is-selected {
+  background: #555; /* Highlight for selected buttons */
+}
+
+/* Selected Fabric Display Area */
+.selected-fabric-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: #181716;
+    border: 1px solid #c69239;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    margin-bottom: 15px;
+}
+
+.selected-fabric-display:hover {
+  background: #c69239;
+}
+
+.selected-fabric-image,
+.selected-fabric-thumbnail {
+  width: 30px; /* Adjust size as needed */
+
+  object-fit: contain; /* Ensures the image covers the area without distortion */
+  border-radius: 5px;
+  /* border: 1px solid rgba(255, 255, 255, 0.2);  */
+}
+
+.selected-fabric-name {
+  color: #fff;
+  font-size: 12px;
+  font-weight: regular;
+  margin-top: 8px;
+  width: 10rem;
+  text-align: center;
+}
+
+/* Specific Button Styles */
+.add-to-cart-button {
+  margin-top: 20px; /* Fixed margin for add to cart button */
+  background: #28a745;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.add-to-cart-button:hover {
+  background: #218838; /* Darker green on hover */
+}
+
+/* Fabric Options Container (sliding panel) */
+.fabric-options-container {
+  position: absolute;
+  top: 0;
+  left: 0; /* Default position, hidden */
+  transform: translateX(0); /* Default transform */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: left 0.3s ease-in-out, transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  opacity: 0; /* Hidden by default */
+  pointer-events: none; /* Disable interaction when hidden */
+  background: #181716;
+  padding: 15px; /* No padding when hidden */
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 25rem; /* Increased width to accommodate new layout */
+  height: fit-content;
+  max-height: calc(100% - 40px);
+  overflow-y: auto; /* Enable scrolling if too many options */
+}
+
+.fabric-options-container.is-visible {
+  left: calc(
+    100% + 20px
+  ); /* Position it to the right of the parent ui-controls-container */
+  transform: translateX(
+    0
+  ); /* No additional transform needed if left is calculated correctly */
+  opacity: 1; /* Fades in */
+  pointer-events: auto; /* Enable interaction when visible */
+  padding: 15px; /* Apply padding when visible */
+}
+
+/* NEW: Style for individual fabric option items */
+.fabric-option-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto; /* Thumbnail, Details, Price/Info Button */
+  grid-template-rows: auto auto; /* Name/Info, Rating */
+  gap: 5px 10px; /* Row gap, Column gap */
+  align-items: center;
+  background: #181716; /* Darker background for items */
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.4s ease-in-out;
+  border: 1px solid transparent; /* Default border */
+  margin: 10px;
+}
+
+.fabric-option-item:hover {
+  background: #c69239;
+}
+
+.fabric-option-item.is-selected {
+  background: #c6923954;
+  border: 1px solid #c69239; /* Highlight selected item */
+}
+
+.fabric-thumbnail-wrapper {
+  grid-column: 1 / 2; /* Spans first column */
+  grid-row: 1 / span 2; /* Spans both rows */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fabric-option-thumbnail {
+  width: 70px; /* Larger thumbnail size */
+  height: 70px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.fabric-details {
+  grid-column: 2 / 3; /* Spans second column */
+  grid-row: 1 / 2; /* First row */
+  display: flex;
+  flex-direction: column;
+  color: #eee;
+}
+
+.fabric-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.fabric-info {
+  font-size: 12px;
+  color: #bbb;
+}
+
+.fabric-rating {
+  grid-column: 2 / 3; /* Spans second column */
+  grid-row: 2 / 3; /* Second row */
+  font-size: 11px;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.star-rating {
+  color: #ffc107; /* Gold color for stars */
+  font-size: 14px; /* Larger stars */
+}
+
+.fabric-price {
+  grid-column: 3 / 4; /* Spans third column */
+  grid-row: 1 / 2; /* First row */
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-align: right;
+  align-self: start; /* Align to the top of its row */
+}
+
+
+/* Selected Product Display Area */
+.selected-product-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background: #181716; /* Slightly different background to stand out */
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #c69239;
+  transition: background 0.2s ease-in-out;
+  margin-bottom: 15px; /* Space below this section */
+}
+
+.selected-product-display:hover {
+  background: #c69239;
+}
+
+.selected-product-image,
+.selected-product-thumbnail {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  object-fit: contain; /* Ensures the image covers the area without distortion */
+  border-radius: 5px;
+  /* border: 1px solid rgba(255, 255, 255, 0.2);  */
+}
+
+.selected-product-name {
+  color: #fff;
+  font-size: 12px;
+  font-weight: regular;
+  margin-top: 8px;
+}
+
+.info-button {
+  grid-column: 3 / 4; /* Spans third column */
+  grid-row: 2 / 3; /* Second row */
+  padding: 5px 10px;
+  background: #007bff; /* Blue button */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s ease-in-out;
+  width: fit-content; /* Make button fit content */
+  justify-self: end; /* Align to the right */
+  align-self: end; /* Align to the bottom of its row */
+  margin-top: auto; /* Pushes button to bottom if row content is less */
+}
+
+.info-button:hover {
+  background: #0056b3;
+}
+
+/* Titles and Labels */
+.fabric-options-title,
+.collar-style-title {
+  color: #fff;
+  margin: 0 0 10px 0;
+}
+
+.control-label {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+/* Messages */
+.add-to-cart-message {
+  color: #28a745;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.loading-fabrics-message {
+  color: #ccc;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.loading-message {
+  /* For the main canvas loading */
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  padding: 50px;
+}
+
+/* Utility Classes for specific button margins */
+.margin-left-5 {
+  margin-left: 5px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+/* Dynamic margin for Change Button Color button based on fabric options visibility */
+
+/* Canvas Container */
+.canvas-container {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.main-canvas {
+  width: 80%;
+  height: 1700px;
+  margin-top: 12%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: auto;
+  image-rendering: high-quality;
+}
+
+.fabric-list-container {
+  height: 95%;
+  overflow-y: auto;
+}
+/* Custom Scrollbar for WebKit (Chrome, Edge, Safari) */
+.fabric-list-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.fabric-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.fabric-list-container::-webkit-scrollbar-thumb {
+  background-color: #888888b6;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.fabric-list-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555555d8;
+}
+
+/* Collar Selection Styles */
+.collar-options-container {
+  position: fixed;
+  top: 0;
+  left: -400px;
+  width: 400px;
+  height: 100vh;
+  background: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.collar-options-container.is-visible {
+  left: 0;
+}
+
+.collar-options-title {
+  padding: 20px;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.collar-list-container {
+  padding: 20px;
+}
+
+.collar-option-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.collar-option-item:hover {
+  background: #f9f9f9;
+  transform: translateY(-2px);
+}
+
+.collar-option-item.is-selected {
+  border-color: #007bff;
+  background: #f0f7ff;
+}
+
+.collar-thumbnail-wrapper {
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.collar-option-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collar-details {
+  flex: 1;
+}
+
+.collar-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.collar-info {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.selected-collar-display {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.selected-collar-display:hover {
+  background: #f9f9f9;
+}
+
+.selected-collar-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.selected-collar-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.custom-shirt-info {
+  font-size: 2rem;
+  position: absolute;
+  width: 400px;
+  right: 2%;
+  top: 30%;
+  text-align: right;
+}
+.custom-shirt-info h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.custom-shirt-info h4 {
+  margin: 0;
+  font-size: 6rem;
+  color: #181716;
+}
+.custom-shirt-info p {
+  margin: 2rem 0 0 0;
+  font-size: 1rem;
+}
+.custom-shirt-info button {
+  margin-top: 20px;
+  padding: 10px 40px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #c69239;
+  border: 1px solid #c69239;
+  border-radius: 0px;
+  cursor: pointer;
+}
+.custom-shirt-info button:hover {
+  background-color: #c69239;
+  color: #000;
+}
+
+.reset-btn {
+  margin-left: 10px;
+}
+.price-item {
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .canvas-container canvas {
+    margin-top: -18%;
+  }
+  
+  /* Mobile Loading Screen */
+  .loading-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .loading-content p {
+    font-size: 1rem;
+  }
+  
+  .loading-logo svg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .loading-content {
+    padding: 20px;
+  }
+
+  /* Show mobile toggle button on mobile */
+  .mobile-sidebar-toggle {
+    display: block;
+  }
+
+  /* Hide desktop sidebar by default on mobile */
+  .ui-controls-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: -1000%;
+    width: calc(100% - 35px);
+    height: 100%;
+    background: rgba(34, 34, 34, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    padding: 60px 20px 20px 20px;
+    overflow-y: auto;
+    border-radius: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+
+  /* Show sidebar when mobile-open class is applied */
+  .ui-controls-container.mobile-open {
+    display: flex;
+    left: 0%;
+    z-index: 9999999999999 !important;
+    transition: all 0.3s ease-in-out;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: baseline;
+    justify-content: space-between;
+  }
+
+  /* Show close button on mobile */
+  .mobile-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fix mobile panel positioning - ensure they stay within screen bounds */
+  .fabric-options-container,
+  .whole-fabric-options-container,
+  .collar-options-container,
+  .sleeve-options-container,
+  .shirt-back-options-container,
+  .placket-options-container,
+  .pocket-options-container,
+  .logo-options-container {
+    position: fixed !important;
+    top: 5dvh !important;
+    left: 5% !important;
+    width: 80% !important;
+    height: 75dvh !important;
+    overflow-y: auto !important;
+    z-index: 1001 !important;
+    background: rgba(34, 34, 34, 0.98) !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Ensure panel content fits properly */
+  .fabric-options-container .fabric-grid,
+  .whole-fabric-options-container .fabric-grid,
+  .collar-options-container .collar-grid,
+  .sleeve-options-container .sleeve-grid,
+  .shirt-back-options-container .shirt-back-grid,
+  .placket-options-container .placket-grid,
+  .pocket-options-container .pocket-grid,
+  .logo-options-container .logo-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+    gap: 10px !important;
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+  }
+
+  /* Make option items smaller on mobile */
+  .fabric-option,
+  .whole-fabric-option,
+  .collar-option,
+  .sleeve-option,
+  .shirt-back-option,
+  .placket-option,
+  .pocket-option,
+  .logo-option {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 60px !important;
+    padding: 8px !important;
+  }
+
+  .fabric-option img,
+  .whole-fabric-option img,
+  .collar-option img,
+  .sleeve-option img,
+  .shirt-back-option img,
+  .placket-option img,
+  .pocket-option img,
+  .logo-option img {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain !important;
+  }
+
+  .fabric-option .fabric-name,
+  .whole-fabric-option .fabric-name,
+  .collar-option .collar-name,
+  .sleeve-option .sleeve-name,
+  .shirt-back-option .shirt-back-name,
+  .placket-option .placket-name,
+  .pocket-option .pocket-name,
+  .logo-option .logo-name {
+    font-size: 10px !important;
+    margin-top: 4px !important;
+  }
+
+  /* Ensure selected displays are properly sized on mobile */
+  .selected-product-display,
+  .selected-fabric-display,
+  .selected-whole-fabric-display,
+  .selected-collar-display,
+  .selected-sleeve-display,
+  .selected-shirt-back-display,
+  .selected-placket-display,
+  .selected-pocket-display,
+  .selected-logo-display {
+    padding: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .selected-product-display img,
+  .selected-fabric-display img,
+  .selected-whole-fabric-display img,
+  .selected-collar-display img,
+  .selected-sleeve-display img,
+  .selected-shirt-back-display img,
+  .selected-placket-display img,
+  .selected-pocket-display img,
+  .selected-logo-display img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .selected-product-display .selected-product-name,
+  .selected-fabric-display .selected-fabric-name,
+  .selected-whole-fabric-display .selected-fabric-name,
+  .selected-collar-display .selected-collar-name,
+  .selected-sleeve-display .selected-sleeve-name,
+  .selected-shirt-back-display .selected-shirt-back-name,
+  .selected-placket-display .selected-placket-name,
+  .selected-pocket-display .selected-pocket-name,
+  .selected-logo-display .selected-logo-name {
+    font-size: 14px !important;
+    margin-top: 0px !important;
+  }
+
+  /* Make buttons smaller on mobile */
+  .ui-button {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .custom-shirt-info {
+    font-size: 1rem;
+    bottom: 8%;
+    top: unset;
+    text-align: left;
+    left: 0%;
+    padding: 2% 2% 5% 2%;
+    width: 96%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+  }
+  .custom-shirt-info h4 {
+    font-size: 2rem;
+    color: white;
+  }
+  .price-item {
+    font-size: 14px;
+    color: white;
+  }
+  .custom-shirt-info button {
+    font-size: 10px;
+  }
+  .custom-shirt-info p {
+    margin-top: 5px;
+    color: white;
+  }
+  .view-toggle-btn {
+    bottom: unset !important;
+    top: 17px;
+  }
+  .selected-product-display,
+  .selected-fabric-display {
+    flex-direction: row;
+    gap: 10px;
+    width: 43%;
+  }
+  .selected-displays-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+/* Additional mobile optimizations for very small screens */
+@media (max-width: 480px) {
+  .mobile-customize-btn {
+    padding: 10px 14px !important;
+    font-size: 12px !important;
+  }
+
+  .mobile-customize-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .ui-controls-container {
+    padding: 50px 15px 15px 15px !important;
+  }
+
+  .fabric-options-container,
+  .whole-fabric-options-container,
+  .collar-options-container,
+  .sleeve-options-container,
+  .shirt-back-options-container,
+  .placket-options-container,
+  .pocket-options-container,
+  .logo-options-container {
+    width: 80% !important;
+    /* max-width: 300px !important; */
+    padding: 15px !important;
+  }
+
+  .fabric-options-container .fabric-grid,
+  .whole-fabric-options-container .fabric-grid,
+  .collar-options-container .collar-grid,
+  .sleeve-options-container .sleeve-grid,
+  .shirt-back-options-container .shirt-back-grid,
+  .placket-options-container .placket-grid,
+  .pocket-options-container .pocket-grid,
+  .logo-options-container .logo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .fabric-option,
+  .whole-fabric-option,
+  .collar-option,
+  .sleeve-option,
+  .shirt-back-option,
+  .placket-option,
+  .pocket-option,
+  .logo-option {
+    min-height: 50px !important;
+    padding: 6px !important;
+  }
+
+  .fabric-option img,
+  .whole-fabric-option img,
+  .collar-option img,
+  .sleeve-option img,
+  .shirt-back-option img,
+  .placket-option img,
+  .pocket-option img,
+  .logo-option img {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .fabric-option .fabric-name,
+  .whole-fabric-option .fabric-name,
+  .collar-option .collar-name,
+  .sleeve-option .sleeve-name,
+  .shirt-back-option .shirt-back-name,
+  .placket-option .placket-name,
+  .pocket-option .pocket-name,
+  .logo-option .logo-name {
+    font-size: 9px !important;
+    margin-top: 3px !important;
+  }
+
+  .selected-product-display,
+  .selected-fabric-display,
+  .selected-whole-fabric-display,
+  .selected-collar-display,
+  .selected-sleeve-display,
+  .selected-shirt-back-display,
+  .selected-placket-display,
+  .selected-pocket-display,
+  .selected-logo-display {
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .selected-product-display img,
+  .selected-fabric-display img,
+  .selected-whole-fabric-display img,
+  .selected-collar-display img,
+  .selected-sleeve-display img,
+  .selected-shirt-back-display img,
+  .selected-placket-display img,
+  .selected-pocket-display img,
+  .selected-logo-display img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .ui-button {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+  }
+  .selected-product-display,
+  .selected-fabric-display {
+    width: 39%;
+  }
+
+  .fabric-option-thumbnail {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .fabric-option-item {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    border: 1px solid #c69239;
+  }
+  .fabric-option-item .fabric-price {
+    position: absolute;
+    font-size: 11px;
+    right: 2%;
+  }
+  .fabric-option-item  button.ui-button.info-button {
+    position: absolute;
+    right: 2%;
+    border: 0;
+    bottom: 2px;
+    font-size: 10px !important;
+  }
+  .fabric-option-item .fabric-details {
+    width: 100%;
+  }
+  .fabric-option-item .fabric-details .fabric-info {
+    width: 80%;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .selected-product-display .selected-product-name,
+  .selected-fabric-display .selected-fabric-name,
+  .selected-whole-fabric-display .selected-fabric-name,
+  .selected-collar-display .selected-collar-name,
+  .selected-sleeve-display .selected-sleeve-name,
+  .selected-shirt-back-display .selected-shirt-back-name,
+  .selected-placket-display .selected-placket-name,
+  .selected-pocket-display .selected-pocket-name,
+  .selected-logo-display .selected-logo-name {
+    font-size: 10px !important;
+    margin-top: 0px !important;
+  }
+
+  .selected-product-display,
+  .selected-fabric-display {
+    width: 41%;
+  }
+  .selected-product-display img,
+  .selected-fabric-display img,
+  .selected-whole-fabric-display img,
+  .selected-collar-display img,
+  .selected-sleeve-display img,
+  .selected-shirt-back-display img,
+  .selected-placket-display img,
+  .selected-pocket-display img,
+  .selected-logo-display img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+
+  .custom-shirt-info {
+    padding-bottom: 8% !important;
+  }
+}
+
+#MainContent {
+  background-image: url(https://cdn.shopify.com/s/files/1/0741/6718/9747/files/6280.jpg?v=1757679034);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;}
+
+/* Section Heading Styles */
+.section-heading {
+  margin: 20px 0 10px 0;
+  padding: 0 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.section-heading h3 {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Notes Components Styles */
+.notes-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  color: #666;
+}
+
+.notes-container {
+  padding: 20px;
+}
+
+.notes-textarea {
+  width: 92%;
+  min-height: 200px;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.notes-textarea:focus {
+  border-color: #007bff;
+}
+
+.notes-textarea::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.notes-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.char-count {
+  font-size: 12px;
+  color: #666;
+}
+
+.notes-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.notes-clear-btn,
+.notes-save-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notes-clear-btn {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.notes-clear-btn:hover:not(:disabled) {
+  background-color: #e9ecef;
+}
+
+.notes-clear-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.notes-save-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.notes-save-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Total Price Styling */
+.price-item.total-price {
+  border-top: 2px solid #e0e0e0;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.price-item.total-price span:last-child {
+  color: #007bff;
+  font-size: 18px;
+}
+
+/* Base Price Styling */
+.price-item.base-price {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.price-item.base-price span:last-child {
+  color: #28a745;
+  font-size: 18px;
+}
+
+/* Product Price Styling */
+.fabric-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #28a745;
+  margin-top: 4px;
+}
+
+/* Progress Screen Styling */
+.progress-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(10px);
+}
+
+.progress-content {
+  text-align: center;
+  color: white;
+  max-width: 400px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+}
+
+.progress-logo {
+  margin-bottom: 20px;
+  color: #28a745;
+}
+
+.progress-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #28a745;
+}
+
+.progress-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.progress-progress {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #28a745, #20c997);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  animation: progressGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes progressGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.8);
+  }
+}
+
+.progress-percentage {
+  font-size: 14px;
+  color: #28a745;
+  font-weight: 600;
+}
+
+.progress-spinner {
+  margin-top: 20px;
+}
+
+.progress-spinner .spinner-ring {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(40, 167, 69, 0.3);
+  border-top: 3px solid #28a745;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

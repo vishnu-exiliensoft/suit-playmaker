@@ -1,0 +1,94 @@
+/**
+ * MAIN APPLICATION STYLES
+ * ========================
+ * 
+ * This file contains all the main CSS styles for the suit customization application.
+ * It includes styles for:
+ * - Main App component layout
+ * - Button style icons and previews
+ * - Fabric effect thumbnails
+ * - Responsive design elements
+ * - Animation keyframes
+ * 
+ * Features:
+ * - Responsive design with media queries
+ * - Smooth animations and transitions
+ * - Consistent styling across components
+ * - Mobile-friendly layouts
+ * 
+ * @author Your Name
+ * @version 1.0.0
+ */
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Style Icon Styles */
+.button-style-icon {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain;
+  border-radius: 4px;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.button-style-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.button-style-option-item:hover .button-style-preview {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+.button-style-option-item.is-selected .button-style-preview {
+  border-color: #007bff;
+  background-color: #e3f2fd;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+

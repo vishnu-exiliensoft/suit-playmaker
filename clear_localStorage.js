@@ -1,0 +1,1 @@
+console.log('Current localStorage:', localStorage.getItem('pm_selectedPlacket')); localStorage.removeItem('pm_selectedPlacket'); console.log('After removal:', localStorage.getItem('pm_selectedPlacket'));
