@@ -2769,8 +2769,8 @@ function StudioLights() {
     const keyLight = new DirectionalLight(0xffffff, 4.0);
     keyLight.position.set(5, 5, 7);
     keyLight.castShadow = true;
-    keyLight.shadow.mapSize.width = 8192; // Increased from 4096
-    keyLight.shadow.mapSize.height = 8192; // Increased from 4096
+    keyLight.shadow.mapSize.width = 1024;
+    keyLight.shadow.mapSize.height = 1024;
     keyLight.shadow.camera.near = 0.1;
     keyLight.shadow.camera.far = 100;
     keyLight.shadow.camera.left = -20;
@@ -2785,8 +2785,8 @@ function StudioLights() {
     const fillLight = new DirectionalLight(0xffffff, 1.5);
     fillLight.position.set(-5, 5, 5);
     fillLight.castShadow = true;
-    fillLight.shadow.mapSize.width = 4096; // Increased from 2048
-    fillLight.shadow.mapSize.height = 4096; // Increased from 2048
+    fillLight.shadow.mapSize.width = 1024;
+    fillLight.shadow.mapSize.height = 1024;
     fillLight.shadow.camera.near = 0.1;
     fillLight.shadow.camera.far = 50;
     fillLight.shadow.camera.left = -15;
@@ -4408,7 +4408,7 @@ export default function App() {
             shadows
             className="main-canvas"
             camera={{ position: [0, 16, 2], fov: 32 }}
-            dpr={[2, 3]}
+            dpr={[1, 1.25]}
             gl={{
               antialias: true,
               powerPreference: "high-performance",
@@ -4430,7 +4430,7 @@ export default function App() {
               gl.shadowMap.needsUpdate = true;
               
               // Better pixel ratio handling
-              const pixelRatio = Math.min(window.devicePixelRatio, 3);
+              const pixelRatio = Math.min(window.devicePixelRatio, 1.25);
               gl.setPixelRatio(pixelRatio);
               
               // Enhanced texture filtering
@@ -4444,7 +4444,7 @@ export default function App() {
             }}
           >
             <StudioLights />
-            <SoftShadows size={15} samples={32} focus={0.5} flat={false} />
+            <SoftShadows size={6} samples={4} focus={0.5} flat={false} />
             {/* Backup: repeatScale was dynamic -> repeatScale={parseFloat(selectedFabric.textureRepeat)} */}
             <ShirtModel
               repeatScale={selectedWholeFabric ? parseFloat(selectedWholeFabric.textureRepeat) : 1}
