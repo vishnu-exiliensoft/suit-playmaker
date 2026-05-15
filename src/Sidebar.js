@@ -423,12 +423,21 @@ const Sidebar = ({
           {(selectedProduct && (selectedProduct.key === "SuitJacket" || selectedProduct.key === "TwoPieceSuit")) && (
             <ButtonOptionsPanel
               selectedButtonStyle={selectedButtonStyle}
+              // setSelectedButtonStyle={(style) => {
+              //   setSelectedButtonStyle(style);
+              //   // Save to localStorage
+              //   try {
+              //     localStorage.setItem("shirt_selectedButtonStyle", style);
+              //   } catch (err) {}
+              // }}
               setSelectedButtonStyle={(style) => {
                 setSelectedButtonStyle(style);
-                // Save to localStorage
+
                 try {
                   localStorage.setItem("shirt_selectedButtonStyle", style);
                 } catch (err) {}
+
+                setShowButtonOptions(false);
               }}
               isVisible={showButtonOptions}
               onSelection={() => setShowButtonOptions(false)}
@@ -444,10 +453,19 @@ const Sidebar = ({
 
           {/* Jacket Pocket options panel - only for SuitJacket and TwoPieceSuit */}
           {(selectedProduct && (selectedProduct.key === "SuitJacket" || selectedProduct.key === "TwoPieceSuit")) && (
+            // <JacketPocketOptionsPanel
+            //   jacketPocketData={jacketPocketData}
+            //   selectedJacketPocket={selectedJacketPocket}
+            //   setSelectedJacketPocket={setSelectedJacketPocket}
+            //   isVisible={showJacketPocketOptions}
+            // />
             <JacketPocketOptionsPanel
               jacketPocketData={jacketPocketData}
               selectedJacketPocket={selectedJacketPocket}
-              setSelectedJacketPocket={setSelectedJacketPocket}
+              setSelectedJacketPocket={(value) => {
+                setSelectedJacketPocket(value);
+                setShowJacketPocketOptions(false);
+              }}
               isVisible={showJacketPocketOptions}
             />
           )}
@@ -456,11 +474,18 @@ const Sidebar = ({
           {(selectedProduct && (selectedProduct.key === "SuitJacket" || selectedProduct.key === "TwoPieceSuit")) && (
             <LapelOptionsPanel
               selectedLapelStyle={selectedLapelStyle}
+              // setSelectedLapelStyle={(style) => {
+              //   setSelectedLapelStyle(style);
+              //   try {
+              //     localStorage.setItem("shirt_selectedLapelStyle", style);
+              //   } catch (err) {}
+              // }}
               setSelectedLapelStyle={(style) => {
                 setSelectedLapelStyle(style);
                 try {
                   localStorage.setItem("shirt_selectedLapelStyle", style);
                 } catch (err) {}
+                setShowLapelOptions(false);
               }}
               isVisible={showLapelOptions}
             />
@@ -493,7 +518,6 @@ const Sidebar = ({
               isVisible={showBeltloopOptions}
             />
           )}
-
           {/* Show pant cuff options panel only if selectedProduct is NOT SuitJacket */}
           {!(selectedProduct && selectedProduct.key === "SuitJacket") && (
             <PantCuffOptionsPanel
