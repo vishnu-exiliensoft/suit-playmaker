@@ -763,7 +763,9 @@ html,
   background: #c6923954;
   border: 1px solid #c69239; /* Highlight selected item */
 }
-
+.fabric-option-item.is-selected .fabric-price{
+  color: #fff;
+}
 .fabric-thumbnail-wrapper {
   grid-column: 1 / 2; /* Spans first column */
   grid-row: 1 / span 2; /* Spans both rows */
@@ -1099,6 +1101,12 @@ html,
   font-size: 6rem;
   color: #fff;
 }
+.custom-shirt-info h4{
+  font-family: "Playfair Display", serif !important;
+}
+.custom-shirt-info h2 ,.custom-shirt-info{
+  font-family: var(--menu-font-family) !important;
+}
 .custom-shirt-info p {
   margin: 2rem 0 0 0;
   font-size: 1rem;
@@ -1108,16 +1116,30 @@ html,
   padding: 10px 40px;
   font-size: 14px;
   text-transform: uppercase;
-  background-color: transparent;
-  color: #c69239;
-  border: 1px solid #c69239;
   border-radius: 0px;
   cursor: pointer;
 }
-.custom-shirt-info button:hover {
+.custom-shirt-info .continue-btn{
   background-color: #c69239;
-  color: #000;
+  color: #181716;
+  border: 1px solid #c69239;
 }
+.custom-shirt-info .continue-btn:hover{
+  background:#181716 ;
+  color: #fff;
+  border: 1px solid #181716 !important;
+}
+.custom-shirt-info .reset-btn{
+  background-color: #fff;
+  color: #181716;
+  border: 1px solid #c69239;
+}
+.custom-shirt-info .reset-btn:hover{
+  background:#181716 ;
+  color: #fff;
+  border: 1px solid #181716 !important;
+}
+
 
 .reset-btn {
   margin-left: 10px;
@@ -1784,4 +1806,7 @@ html,
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.delivery-note{
+ background: green;color: #fff;width: fit-content;margin-left: auto !important;padding: 3px 12px 4px 12px;font-size: 12px !important;border-radius: 34px;
 }

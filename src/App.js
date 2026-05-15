@@ -4607,7 +4607,7 @@ export default function App() {
                 Reset All
               </button>
             </div>
-            <p>Order Today, Receive in 2 weeks.</p>
+            <p className="delivery-note">Order Today, Receive in 2 weeks.</p>
           </div>
           <button
             className="view-toggle-btn"
