@@ -547,13 +547,31 @@ const Sidebar = ({
 
           {/* Show pocket options panel only if selectedProduct is NOT SuitJacket */}
           {!(selectedProduct && selectedProduct.key === "SuitJacket") && (
+            // <PocketOptionsPanel
+            //   selectedPocket={selectedPocket}
+            //   setSelectedPocket={setSelectedPocket}
+            //   selectedBackPocketStyle={selectedBackPocketStyle}
+            //   setSelectedBackPocketStyle={setSelectedBackPocketStyle}
+            //   selectedFrontPocketStyle={selectedFrontPocketStyle}
+            //   setSelectedFrontPocketStyle={setSelectedFrontPocketStyle}
+            //   isVisible={showPocketOptions}
+            //   onSelection={() => setShowPocketOptions(false)}
             <PocketOptionsPanel
               selectedPocket={selectedPocket}
-              setSelectedPocket={setSelectedPocket}
+              setSelectedPocket={(value) => {
+                setSelectedPocket(value);
+                setShowPocketOptions(false);
+              }}
               selectedBackPocketStyle={selectedBackPocketStyle}
-              setSelectedBackPocketStyle={setSelectedBackPocketStyle}
+              setSelectedBackPocketStyle={(value) => {
+                setSelectedBackPocketStyle(value);
+                setShowPocketOptions(false);
+              }}
               selectedFrontPocketStyle={selectedFrontPocketStyle}
-              setSelectedFrontPocketStyle={setSelectedFrontPocketStyle}
+              setSelectedFrontPocketStyle={(value) => {
+                setSelectedFrontPocketStyle(value);
+                setShowPocketOptions(false);
+              }}
               isVisible={showPocketOptions}
               onSelection={() => setShowPocketOptions(false)}
               onPriceChange={(price) => {
